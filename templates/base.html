@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boggle</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    <h1>BOGGLE GAME</h1>
+    <table>
+        {% for row in game_board %}
+        <tr>
+            {% for char in row %}
+            <td>{{ char }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form action="">
+        <input type="text" placeholder="Type your guess">
+        <input type="submit" value="Submit" name="" id="">
+    </form>
+</body>
+
+</html>
