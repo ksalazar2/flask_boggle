@@ -21,10 +21,15 @@
         {% endfor %}
     </table>
 
-    <form action="">
-        <input type="text" placeholder="Type your guess">
-        <input type="submit" value="Submit" name="" id="">
+    <form method="POST">
+        <input type="text" placeholder="Type your guess" name="guess" class="guess">
+        <input type="submit" value="Submit">
     </form>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="/static/js/app.js"></script>
 </body>
 
 </html>
