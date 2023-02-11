@@ -13,22 +13,34 @@ function updateScore(wordLen) {
     $('#score').text(score);
 }
 
+function endGame() {
+    $('.feedback').remove()
+    $('form').after("<p class='endgame'>Time's up!</p>");
+    $('form').off();
+    $('form').on('submit', (e) => {
+        e.preventDefault();
+    })
+}
+
+// Add event listener for guess submission
 $('form').on('submit', async (e) => {
     e.preventDefault();
+    $('.feedback').text('')
     const $userGuess = $('.guess');
     const userGuess = $userGuess.val();
-    console.log(userGuess, 'first')
     let resp = await submitGuess(userGuess)
-    console.log(userGuess, 'second')
     if (resp === 'not-word') {
-        $('form').after(`<p>${userGuess} is not a valid word!</p>`)
+        $('form').after(`<p class="feedback">${userGuess} is not a valid word!</p>`)
     } else if (resp === 'not-on-board') {
-        $('form').after(`<p>${userGuess} cannot be found on the board!</p>`)
+        $('form').after(`<p class="feedback">${userGuess} cannot be found on the board!</p>`)
     } else {
-        $('form').after(`<p>${userGuess} is a valid word on the board!</p>`);
+        $('form').after(`<p class="feedback">${userGuess} is a valid word on the board!</p>`);
         updateScore(userGuess.length);
     }
 })
+
+// Add timer
+setTimeout(endGame, 10000)
 
 // $('form').on('submit', async function (e) {
 //     e.preventDefault();
