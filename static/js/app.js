@@ -7,6 +7,12 @@ async function submitGuess(guess) {
     return resp.data.result;
 }
 
+function updateScore(wordLen) {
+    let score = parseInt($('#score').text());
+    score += wordLen;
+    $('#score').text(score);
+}
+
 $('form').on('submit', async (e) => {
     e.preventDefault();
     const $userGuess = $('.guess');
@@ -19,7 +25,8 @@ $('form').on('submit', async (e) => {
     } else if (resp === 'not-on-board') {
         $('form').after(`<p>${userGuess} cannot be found on the board!</p>`)
     } else {
-        $('form').after(`<p>${userGuess} is a valid word on the board!</p>`)
+        $('form').after(`<p>${userGuess} is a valid word on the board!</p>`);
+        updateScore(userGuess.length);
     }
 })
 
