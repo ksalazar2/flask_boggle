@@ -8,6 +8,7 @@ app.config['SECRET_KEY'] = 'plswork'
 
 boggle_game = Boggle()
 
+
 @app.route('/')
 def display_board():
     """Display game board."""
@@ -17,9 +18,10 @@ def display_board():
     if 'numGames' not in session:
         session['numGames'] = 0
     if 'highScore' not in session:
-        session['highScore'] = 0    
+        session['highScore'] = 0
 
-    return render_template('base.html', game_board = board)
+    return render_template('base.html', game_board=board)
+
 
 @app.route('/submit-word')
 def handle_guess():
@@ -27,11 +29,9 @@ def handle_guess():
 
     user_guess = request.args['guess']
     board = session['board']
-    print(user_guess)
-    print(board)
     resp = boggle_game.check_valid_word(board, user_guess)
-    print(resp)
     return jsonify({'result': resp})
+
 
 @app.route('/update-stats', methods=['POST'])
 def updateStats():
