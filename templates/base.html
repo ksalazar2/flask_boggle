@@ -11,7 +11,9 @@
 
 <body>
     <h1>BOGGLE GAME</h1>
-    <h2>Score: <span id="score">0</span></h2>
+    <h2>Highest Score: <span id="highest">{{ session['highScore'] }}</span> Games Played: <span id="numGames">{{
+            session['numGames'] }}</span></h2>
+    <h2 class="scoreText">Score: <span id="score">0</span></h2>
     <table>
         {% for row in game_board %}
         <tr>

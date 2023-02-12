@@ -14,6 +14,10 @@ def display_board():
 
     board = boggle_game.make_board()
     session['board'] = board
+    if 'numGames' not in session:
+        session['numGames'] = 0
+    if 'highScore' not in session:
+        session['highScore'] = 0    
 
     return render_template('base.html', game_board = board)
 
@@ -28,3 +32,16 @@ def handle_guess():
     resp = boggle_game.check_valid_word(board, user_guess)
     print(resp)
     return jsonify({'result': resp})
+
+@app.route('/update-stats', methods=['POST'])
+def updateStats():
+    """Update game statistics after each played game."""
+
+    newScore = request.json['score']
+    numGames = session['numGames']
+    session['numGames'] = numGames + 1
+    if newScore > session['highScore']:
+        session['highScore'] = newScore
+    highScore = session['highScore']
+    numGames = session['numGames']
+    return jsonify({'highscore': highScore, 'numgames': numGames})
