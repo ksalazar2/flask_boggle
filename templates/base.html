@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boggle</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    <h1>BOGGLE GAME</h1>
+    <h2>Highest Score: <span id="highest">{{ session['highScore'] }}</span> Games Played: <span id="numGames">{{
+            session['numGames'] }}</span></h2>
+    <h2 class="scoreText">Score: <span id="score">0</span></h2>
+    <table>
+        {% for row in game_board %}
+        <tr>
+            {% for char in row %}
+            <td>{{ char }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form method="POST">
+        <input type="text" placeholder="Type your guess" name="guess" class="guess">
+        <input type="submit" value="Submit">
+    </form>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>
